@@ -25,5 +25,47 @@ namespace TetrisCSharp
             Columns = columns;
             grid = new int[rows, columns];
         }
+
+        public bool IsInside(int r, int c)
+        {
+            return r >= 0 && r < Rows && c >= 0 && c < Columns;
+        }
+        
+        public bool IsEmpty(int r, int c)
+        {
+            return IsInside(r, c) && grid[r, c] == 0;
+        }
+
+        public bool IsRowFull(int r)
+        {
+            for (int c =0; c < Columns; c++)
+            {
+                if (grid[r, c] == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool IsRowEmpty(int r)
+        {
+            for (int c = 0; c < Columns; c++)
+            {
+                if (grid[r, c] != 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public void ClearRow(int r)
+        {
+            for (int c = 0; c < Columns; c++)
+            {
+                grid[r, c] = 0;
+            }
+        }
     }
 }
