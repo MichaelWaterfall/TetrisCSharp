@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TetrisCSharp
 {
-    internal class GameGrid
+    public class GameGrid
     {
+        private readonly int[,] grid;
+
+
     }
 }
