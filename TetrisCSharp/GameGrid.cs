@@ -18,5 +18,12 @@ namespace TetrisCSharp
             get => grid[r, c];
             set => grid[r, c] = value;
         }
+
+        public GameGrid(int rows, int columns)
+        {
+            Rows = rows;
+            Columns = columns;
+            grid = new int[rows, columns];
+        }
     }
 }
