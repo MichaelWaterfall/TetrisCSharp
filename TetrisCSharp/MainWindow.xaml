@@ -8,7 +8,7 @@
         Title="Tetris" Height="600" Width="800"
         MinWidth="600" MinHeight="600"
         Foreground="White"
-        FontFamily="Segoe UI Light" Fontsize="28"
+        FontFamily="Segoe UI Light" FontSize="28"
         KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +17,23 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/Background.png" />
+        </Grid.Background>
+
+        <Viewbox Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="0,0,0,20">
+            <Canvas x:Name="GameCanvas"
+                Background="#101010"
+                Width="250"
+                Height="500"
+            />
+        </Viewbox>
     </Grid>
 </Window>
