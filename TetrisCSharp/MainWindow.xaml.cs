@@ -16,6 +16,19 @@ namespace TetrisCSharp
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private readonly ImageSource[] titleImages = new ImageSource[]
+        {
+            new BitmapImage(new Uri("Assets/TileEmpty.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/TileCyan.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/TileBlue.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/TileOrange.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/TileYellow.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/TileGreen.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/TilePurple.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/TileRed.png", UriKind.Relative))
+        };
+
         public MainWindow()
         {
             InitializeComponent();
