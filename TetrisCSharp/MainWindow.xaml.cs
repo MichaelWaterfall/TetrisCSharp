@@ -29,9 +29,65 @@ namespace TetrisCSharp
             new BitmapImage(new Uri("Assets/TileRed.png", UriKind.Relative))
         };
 
+        private readonly ImageSource[] blockImages = new ImageSource[]
+        {
+            new BitmapImage(new Uri("Assets/Block-Empty.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/Block-I.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/Block-J.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/Block-L.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/Block-O.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/Block-S.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/Block-T.png", UriKind.Relative)),
+            new BitmapImage(new Uri("Assets/Block-Z.png", UriKind.Relative))
+        };
+
+        private readonly Image[,] imageControls;
+
+        private GameState gameState = new GameState();
+
         public MainWindow()
         {
             InitializeComponent();
+            imageControls = SetupGameCanvas(gameState.GameGrid);
+        }
+
+        private Image[,] SetupGameCanvas(GameGrid grid)
+        {
+            Image[,] imageControls = new Image[grid.Rows, grid.Columns];
+            int cellSize = 25;
+
+            for (int r = 0; r < grid.Rows; r++)
+            {
+                for (int c = 0; c < grid.Columns; c++)
+                {
+                    Image imageControl = new Image
+                    {
+                        Width = cellSize,
+                        Height = cellSize
+                    };
+
+                    Canvas.SetTop(imageControl, (r - 2) * cellSize);
+                    Canvas.SetLeft(imageControl, c * cellSize);
+                    GameCanvas.Children.Add(imageControl);
+                    imageControls[r, c] = imageControl;
+                }
+            }
+            return imageControls;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PlayAgain_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
