@@ -66,7 +66,7 @@ namespace TetrisCSharp
                         Height = cellSize
                     };
 
-                    Canvas.SetTop(imageControl, (r - 2) * cellSize);
+                    Canvas.SetTop(imageControl, (r - 2) * cellSize + 10);
                     Canvas.SetLeft(imageControl, c * cellSize);
                     GameCanvas.Children.Add(imageControl);
                     imageControls[r, c] = imageControl;
@@ -95,10 +95,33 @@ namespace TetrisCSharp
             }
         }
 
+        private void DrawNextBlock(BlockQueue blockQueue)
+        {
+            Block next = blockQueue.NextBlock;
+            NextImage.Source = blockImages[next.Id];
+        }
+
+        private void DrawHeldBlock(Block heldBlock)
+        {
+            if (heldBlock == null)
+            {
+                HoldImage.Source = blockImages[0];
+            }
+            else
+            {
+                HoldImage.Source = blockImages[heldBlock.Id];
+            }
+        }
+
+        
+
         private void Draw(GameState gameState)
         {
             DrawGrid(gameState.GameGrid);
             DrawBlock(gameState.CurrentBlock);
+            DrawNextBlock(gameState.BlockQueue);
+            DrawHeldBlock(gameState.HeldBlock);
+            ScoreText.Text = $"Score: {gameState.Score}";
         }
 
         private async Task GameLoop()
@@ -111,6 +134,9 @@ namespace TetrisCSharp
                 gameState.MoveBlockDown();
                 Draw(gameState);
             }
+
+            GameOverMenu.Visibility = Visibility.Visible;
+            FinalScoreText.Text = $"Score: {gameState.Score}";
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -134,6 +160,12 @@ namespace TetrisCSharp
                 case Key.Up:
                     gameState.RotateBlockCW();
                     break;
+                case Key.C:
+                    gameState.HoldBlock();
+                    break;
+                case Key.Space:
+                    gameState.DropBlock();
+                    break;
                 case Key.Z:
                     gameState.RotateBlockCCW();
                     break;
@@ -144,14 +176,16 @@ namespace TetrisCSharp
             Draw(gameState);
         }
 
-        private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
+        private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            Draw(gameState);
+            await GameLoop();
         }
 
-        private void PlayAgain_Click(object sender, RoutedEventArgs e)
+        private async void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
-
+            gameState = new GameState();
+            GameOverMenu.Visibility = Visibility.Hidden;
+            await GameLoop();
         }
     }
 }
