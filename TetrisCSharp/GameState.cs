@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Media;
 
 namespace TetrisCSharp
 {
@@ -42,12 +43,17 @@ namespace TetrisCSharp
 
         public bool CanHold { get; private set; }
 
+        public SoundPlayer Player { get; private set; }
+
         public GameState()
         {
             GameGrid = new GameGrid(22, 10);
             BlockQueue = new BlockQueue();
             CanHold = true;
             CurrentBlock = BlockQueue.GetAndUpdate();
+            Player = new SoundPlayer();
+            this.Player.SoundLocation = @"C:\Users\Tarzan\Desktop\CVs\Projects\TetrisCSharp\TetrisCSharp\bin\Debug\tetris-theme-korobeiniki.wav";
+            this.Player.PlayLooping();
         }
 
         private bool BlockFits()
