@@ -85,6 +85,11 @@
                            FontSize="36"
                            TextAlignment="Center"/>
 
+                <TextBlock x:Name="MusicCredit" 
+                           Text="Music by Gregor Quendel from Pixabay"
+                           FontSize="15"
+                           TextAlignment="Center"/>
+
                 <Button Content="Play Again"
                         Background="LightGreen"
                         Margin="0,20,0,0"
