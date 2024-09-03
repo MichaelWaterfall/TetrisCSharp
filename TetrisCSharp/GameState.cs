@@ -43,7 +43,8 @@ namespace TetrisCSharp
 
         public bool CanHold { get; private set; }
 
-        public SoundPlayer Player { get; private set; }
+        public SoundPlayer Music { get; private set; }
+
 
         public GameState()
         {
@@ -51,9 +52,12 @@ namespace TetrisCSharp
             BlockQueue = new BlockQueue();
             CanHold = true;
             CurrentBlock = BlockQueue.GetAndUpdate();
-            Player = new SoundPlayer();
-            this.Player.SoundLocation = @"C:\Users\Tarzan\Desktop\CVs\Projects\TetrisCSharp\TetrisCSharp\bin\Debug\tetris-theme-korobeiniki.wav";
-            this.Player.PlayLooping();
+            Music = new SoundPlayer();
+            this.Music.SoundLocation = @"C:\Users\Tarzan\Desktop\CVs\Projects\TetrisCSharp\TetrisCSharp\bin\Debug\tetris-theme-korobeiniki.wav";
+            this.Music.Load();
+            this.Music.PlayLooping();
+            
+            
         }
 
         private bool BlockFits()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Media;
 
 namespace TetrisCSharp
 {
@@ -19,11 +20,14 @@ namespace TetrisCSharp
             set => grid[r, c] = value;
         }
 
+        public SoundPlayer WinSound { get; private set; }
         public GameGrid(int rows, int columns)
         {
             Rows = rows;
             Columns = columns;
             grid = new int[rows, columns];
+            WinSound = new SoundPlayer();
+            this.WinSound.SoundLocation = @"C:\Users\Tarzan\Desktop\CVs\Projects\TetrisCSharp\TetrisCSharp\bin\Debug\cute-level-up-2-189851.wav";
         }
 
         public bool IsInside(int r, int c)
@@ -66,6 +70,7 @@ namespace TetrisCSharp
             {
                 grid[r, c] = 0;
             }
+            this.WinSound.Play();
         }
 
         private void MoveRowDown(int r, int numRows)
@@ -93,6 +98,7 @@ namespace TetrisCSharp
                     MoveRowDown(r, cleared);
                 }
             }
+
             return cleared;
         }
     }
