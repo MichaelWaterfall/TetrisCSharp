@@ -21,13 +21,17 @@ namespace TetrisCSharp
         }
 
         public SoundPlayer WinSound { get; private set; }
+        public SoundPlayer Music { get; private set; }
         public GameGrid(int rows, int columns)
         {
             Rows = rows;
             Columns = columns;
             grid = new int[rows, columns];
-            WinSound = new SoundPlayer();
-            this.WinSound.SoundLocation = @"C:\Users\Tarzan\Desktop\CVs\Projects\TetrisCSharp\TetrisCSharp\bin\Debug\cute-level-up-2-189851.wav";
+            //WinSound = new SoundPlayer();
+            //Music = new SoundPlayer();
+            //this.WinSound.SoundLocation = @"C:\Users\Tarzan\Desktop\CVs\Projects\TetrisCSharp\TetrisCSharp\bin\Debug\cute-level-up-2-189851.wav";
+            //this.Music.SoundLocation = @"C:\Users\Tarzan\Desktop\CVs\Projects\TetrisCSharp\TetrisCSharp\bin\Debug\tetris-theme-korobeiniki.wav";
+            //this.Music.PlayLooping();
         }
 
         public bool IsInside(int r, int c)
@@ -65,13 +69,17 @@ namespace TetrisCSharp
         }
 
         public void ClearRow(int r)
+
         {
+            //this.WinSound.Play();
             for (int c = 0; c < Columns; c++)
             {
                 grid[r, c] = 0;
             }
-            this.WinSound.Play();
+            
+            
         }
+
 
         private void MoveRowDown(int r, int numRows)
         {

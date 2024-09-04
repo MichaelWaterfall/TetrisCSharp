@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Media;
+//using Windows.Media.Core;
 
 namespace TetrisCSharp
 {
@@ -46,6 +47,8 @@ namespace TetrisCSharp
         public SoundPlayer Music { get; private set; }
 
 
+
+
         public GameState()
         {
             GameGrid = new GameGrid(22, 10);
@@ -54,10 +57,11 @@ namespace TetrisCSharp
             CurrentBlock = BlockQueue.GetAndUpdate();
             Music = new SoundPlayer();
             this.Music.SoundLocation = @"C:\Users\Tarzan\Desktop\CVs\Projects\TetrisCSharp\TetrisCSharp\bin\Debug\tetris-theme-korobeiniki.wav";
-            this.Music.Load();
-            this.Music.PlayLooping();
+            //Music.Source = MediaSource.CreateFromUri(new Uri(@"C:\Users\Tarzan\Desktop\CVs\Projects\TetrisCSharp\TetrisCSharp\bin\Debug\tetris-theme-korobeiniki.wav"));
+            Music.PlayLooping();
             
-            
+
+
         }
 
         private bool BlockFits()
